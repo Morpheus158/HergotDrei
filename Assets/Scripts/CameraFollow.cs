@@ -16,7 +16,7 @@ public class CameraFollow : MonoBehaviour
     {
         this.cam = (Camera)this.gameObject.GetComponent("Camera");
         this.cam.orthographic = true;
-        this.cam.orthographicSize = 20f;
+        this.cam.orthographicSize = 40f;
 
         Vector3 cameraDistance = target.position - cam.transform.position;
     }
