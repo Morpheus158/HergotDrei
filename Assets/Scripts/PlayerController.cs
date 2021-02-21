@@ -4,27 +4,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 3000f;
-
-    public Rigidbody rb;
-    Vector3 movement;
+    public float speed = 30f;
 
     private void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = 0;
-        movement.z = Input.GetAxisRaw("Vertical");
+        //ship movement according to mouse position
+        transform.Translate(- Vector3.up * Input.GetAxis("Vertical") * Time.deltaTime * speed);
+        transform.Translate(- Vector3.right * Input.GetAxis("Horizontal") * Time.deltaTime * speed);
     }
 
     private void FixedUpdate()
     {
-        //print(rb.position);
-        rb.AddForce(movement * speed * Time.fixedDeltaTime);
-        //rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
-
+        //facing mouse cursor
         var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Quaternion rotation = Quaternion.LookRotation((mousePosition - transform.position), Vector3.forward);
-
+        var mouseDirection = mousePosition - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(mouseDirection, Vector3.forward);
         transform.rotation = rotation;
         transform.eulerAngles = new Vector3(-90, transform.eulerAngles.y, 0);
     }
