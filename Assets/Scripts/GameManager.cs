@@ -6,6 +6,6 @@ public class GameManager : MonoBehaviour
 {
     void Update()
     {
-        if (Input.GetKeyDown("escape")) Application.Quit();
+        //if (Input.GetKeyDown("escape")) Application.Quit();
     }
 }
